@@ -34,7 +34,7 @@ BooksLibrary/
 - **Разметка форм** — `Views/`
 
 ## Запуск приложения
-###1. Установите зависимости
+##1. Установите зависимости
 - [.NET SDK 10](https://dotnet.microsoft.com/download)
 - [PostgreSQL 13+](https://www.postgresql.org/download/)
 - EF Core CLI:
@@ -42,20 +42,20 @@ BooksLibrary/
   dotnet tool install --global dotnet-ef --version 10.0.7
   ```
 
-###2. Подключите базу данных
+##2. Подключите базу данных
 Перейдите в App.axaml.cs и AppDbContextFactory.cs и укажите там данные для подключения к вашей базе данных
 ```
 Host=АДРЕС;Port=5432;Database=НАЗВАНИЕ_БАЗЫ_ДАННЫХ;Username=ИМЯ_ПОЛЬЗОВАТЕЛЯ;Password=ПАРОЛЬ
 ```
 
-###3. Создайте базу данных и применить миграицю
+##3. Создайте базу данных и применить миграицю
 ```bash
 cd BooksLibrary
 dotnet ef database update
 ```
 Эта команда создаст базу `librarydb` и таблицы автоматически.
 
-###4. Запуск
+##4. Запуск
 ```bash
 dotnet run
 ```
