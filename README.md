@@ -47,7 +47,7 @@ BooksLibrary/
   ```
 
 ### 2. Подключите базу данных
-Перейдите в App.axaml.cs и AppDbContextFactory.cs и укажите там данные для подключения к вашей базе данных
+Перейдите в [App.axaml.cs](https://github.com/AfordiumSX/LibraryBooks-c-/blob/main/BooksLibrary/App.axaml.cs) и [AppDbContextFactory.cs](https://github.com/AfordiumSX/LibraryBooks-c-/blob/main/BooksLibrary/Infrastructure/Data/AppDbContextFactory.cs) и укажите там данные для подключения к вашей базе данных
 ```
 Host=АДРЕС;Port=5432;Database=НАЗВАНИЕ_БАЗЫ_ДАННЫХ;Username=ИМЯ_ПОЛЬЗОВАТЕЛЯ;Password=ПАРОЛЬ
 ```
