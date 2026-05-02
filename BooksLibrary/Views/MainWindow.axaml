@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BooksLibrary.ViewModels"
+        x:Class="BooksLibrary.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Библиотека" Width="1200" Height="780">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*">
+
+        <Border Grid.Row="0" BorderBrush="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
+                BorderThickness="0,0,0,1">
+            <Grid Margin="16,12" ColumnDefinitions="*,Auto">
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
+                    <Button Content="Книги"     Command="{Binding NavigateToBooksCommand}"/>
+                    <Button Content="Авторы"    Command="{Binding NavigateToAuthorsCommand}"/>
+                    <Button Content="Жанры"     Command="{Binding NavigateToGenresCommand}"/>
+                    <Button Content="Читатели"  Command="{Binding NavigateToReadersCommand}"/>
+                    <Button Content="Выдачи"    Command="{Binding NavigateToLoansCommand}"/>
+                </StackPanel>
+
+                <Button Grid.Column="1"
+                        Content="{Binding ThemeButtonText}"
+                        Command="{Binding ToggleThemeCommand}"/>
+            </Grid>
+        </Border>
+
+        <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}"/>
+
+    </Grid>
+</Window>

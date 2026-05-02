@@ -1,0 +1,62 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BooksLibrary.ViewModels.Loans"
+        x:Class="BooksLibrary.Views.Loans.NewLoanView"
+        x:DataType="vm:NewLoanViewModel"
+        Title="Новая выдача"
+        Width="520" Height="420"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+
+  <Grid RowDefinitions="Auto,*,Auto" Margin="16">
+
+    <TextBlock Grid.Row="0" Text="Новая выдача"
+               FontSize="20" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+    <StackPanel Grid.Row="1" Spacing="12">
+      <StackPanel>
+        <TextBlock Text="Книга" Margin="0,0,0,4"/>
+        <ComboBox ItemsSource="{Binding Books}"
+                  SelectedItem="{Binding SelectedBook}"
+                  HorizontalAlignment="Stretch">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Title}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+
+      <StackPanel>
+        <TextBlock Text="Читатель" Margin="0,0,0,4"/>
+        <ComboBox ItemsSource="{Binding Readers}"
+                  SelectedItem="{Binding SelectedReader}"
+                  HorizontalAlignment="Stretch">
+          <ComboBox.ItemTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding FullName}"/>
+            </DataTemplate>
+          </ComboBox.ItemTemplate>
+        </ComboBox>
+      </StackPanel>
+
+      <StackPanel>
+        <TextBlock Text="Срок (дней)" Margin="0,0,0,4"/>
+        <NumericUpDown Value="{Binding Days}" Minimum="1" Maximum="365"/>
+      </StackPanel>
+
+      <TextBlock Text="{Binding ErrorMessage}"
+                 Foreground="Red"
+                 IsVisible="{Binding ErrorMessage, Converter={x:Static ObjectConverters.IsNotNull}}"
+                 TextWrapping="Wrap"/>
+    </StackPanel>
+
+    <StackPanel Grid.Row="2" Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                Spacing="8" Margin="0,16,0,0">
+      <Button Command="{Binding ConfirmCommand}" Content="Выдать"  IsDefault="True"/>
+      <Button Command="{Binding CancelCommand}"  Content="Отмена"  IsCancel="True"/>
+    </StackPanel>
+
+  </Grid>
+</Window>

@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:BooksLibrary.ViewModels.Loans"
+             x:Class="BooksLibrary.Views.Loans.LoanListView"
+             x:DataType="vm:LoanListViewModel">
+
+  <Grid RowDefinitions="Auto,Auto,*,Auto,Auto" Margin="16">
+
+    <TextBlock Grid.Row="0" Text="Выдачи"
+               FontSize="20" FontWeight="SemiBold" Margin="0,0,0,12"/>
+
+    <CheckBox Grid.Row="1"
+              Content="Показывать всю историю (включая возвращённые)"
+              IsChecked="{Binding ShowAll}"
+              Margin="0,0,0,8"/>
+
+    <DataGrid Grid.Row="2"
+              ItemsSource="{Binding Loans}"
+              SelectedItem="{Binding SelectedLoan}"
+              AutoGenerateColumns="False"
+              CanUserSortColumns="True"
+              CanUserResizeColumns="True"
+              IsReadOnly="True"
+              GridLinesVisibility="Horizontal"
+              ScrollViewer.VerticalScrollBarVisibility="Auto"
+              ScrollViewer.HorizontalScrollBarVisibility="Auto">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Книга"     Binding="{Binding BookTitle}"  Width="*"/>
+        <DataGridTextColumn Header="Читатель"  Binding="{Binding ReaderName}" Width="200"/>
+        <DataGridTextColumn Header="Выдана"    Binding="{Binding LoanedAt}"   Width="110"/>
+        <DataGridTextColumn Header="Срок"      Binding="{Binding DueDate}"    Width="110"/>
+        <DataGridTextColumn Header="Возврат"   Binding="{Binding ReturnedAt}" Width="110"/>
+        <DataGridCheckBoxColumn Header="Просрочена" Binding="{Binding IsOverdue}"  Width="100"/>
+        <DataGridCheckBoxColumn Header="Возвращена" Binding="{Binding IsReturned}" Width="100"/>
+      </DataGrid.Columns>
+    </DataGrid>
+
+    <TextBlock Grid.Row="3"
+               Text="{Binding ErrorMessage}"
+               Foreground="Red"
+               IsVisible="{Binding ErrorMessage, Converter={x:Static ObjectConverters.IsNotNull}}"
+               TextWrapping="Wrap"
+               Margin="0,8,0,0"/>
+
+    <StackPanel Grid.Row="4" Orientation="Horizontal"
+                Spacing="8" Margin="0,8,0,0">
+      <Button Command="{Binding LoadCommand}"     Content="Обновить"/>
+      <Button Command="{Binding NewLoanCommand}"  Content="Новая выдача"/>
+      <Button Command="{Binding ReturnCommand}"   Content="Вернуть"/>
+    </StackPanel>
+
+  </Grid>
+</UserControl>

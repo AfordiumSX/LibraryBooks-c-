@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BooksLibrary.ViewModels.Authors"
+        x:Class="BooksLibrary.Views.Authors.AuthorEditView"
+        x:DataType="vm:AuthorEditViewModel"
+        Title="{Binding WindowTitle}"
+        Width="480" Height="340"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+
+  <Grid RowDefinitions="Auto,*,Auto" Margin="16">
+
+    <TextBlock Grid.Row="0" Text="{Binding WindowTitle}"
+               FontSize="20" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+    <StackPanel Grid.Row="1" Spacing="12">
+      <StackPanel>
+        <TextBlock Text="Имя" Margin="0,0,0,4"/>
+        <TextBox Text="{Binding FirstName}" PlaceholderText="Введите имя автора"/>
+      </StackPanel>
+
+      <StackPanel>
+        <TextBlock Text="Фамилия" Margin="0,0,0,4"/>
+        <TextBox Text="{Binding LastName}" PlaceholderText="Введите фамилию автора"/>
+      </StackPanel>
+
+      <TextBlock Text="{Binding ErrorMessage}"
+                 Foreground="Red"
+                 IsVisible="{Binding ErrorMessage, Converter={x:Static ObjectConverters.IsNotNull}}"
+                 TextWrapping="Wrap"/>
+    </StackPanel>
+
+    <StackPanel Grid.Row="2" Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                Spacing="8" Margin="0,16,0,0">
+      <Button Command="{Binding SaveCommand}"   Content="Сохранить" IsDefault="True"/>
+      <Button Command="{Binding CancelCommand}" Content="Отмена"    IsCancel="True"/>
+    </StackPanel>
+
+  </Grid>
+</Window>

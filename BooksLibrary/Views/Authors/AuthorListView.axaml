@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:BooksLibrary.ViewModels.Authors"
+             x:Class="BooksLibrary.Views.Authors.AuthorListView"
+             x:DataType="vm:AuthorListViewModel">
+
+  <Grid RowDefinitions="Auto,*,Auto,Auto" Margin="16">
+
+    <TextBlock Grid.Row="0" Text="Авторы"
+               FontSize="20" FontWeight="SemiBold" Margin="0,0,0,12"/>
+
+    <DataGrid Grid.Row="1"
+              ItemsSource="{Binding Authors}"
+              SelectedItem="{Binding SelectedAuthor}"
+              AutoGenerateColumns="False"
+              CanUserSortColumns="True"
+              CanUserResizeColumns="True"
+              IsReadOnly="True"
+              GridLinesVisibility="Horizontal"
+              ScrollViewer.VerticalScrollBarVisibility="Auto"
+              ScrollViewer.HorizontalScrollBarVisibility="Auto">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="ID"      Binding="{Binding Id}"        Width="60"/>
+        <DataGridTextColumn Header="Имя"     Binding="{Binding FirstName}" Width="180"/>
+        <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"  Width="*"/>
+      </DataGrid.Columns>
+    </DataGrid>
+
+    <TextBlock Grid.Row="2"
+               Text="{Binding ErrorMessage}"
+               Foreground="Red"
+               IsVisible="{Binding ErrorMessage, Converter={x:Static ObjectConverters.IsNotNull}}"
+               TextWrapping="Wrap"
+               Margin="0,8,0,0"/>
+
+    <StackPanel Grid.Row="3" Orientation="Horizontal"
+                Spacing="8" Margin="0,8,0,0">
+      <Button Command="{Binding LoadCommand}"   Content="Обновить"/>
+      <Button Command="{Binding AddCommand}"    Content="Добавить"/>
+      <Button Command="{Binding EditCommand}"   Content="Изменить"/>
+      <Button Command="{Binding DeleteCommand}" Content="Удалить"/>
+    </StackPanel>
+
+  </Grid>
+</UserControl>

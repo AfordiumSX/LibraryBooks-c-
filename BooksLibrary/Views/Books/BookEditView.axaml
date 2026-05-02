@@ -1,0 +1,79 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BooksLibrary.ViewModels.Books"
+        x:Class="BooksLibrary.Views.Books.BookEditView"
+        x:DataType="vm:BookEditViewModel"
+        Title="{Binding WindowTitle}"
+        Width="520" Height="640"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+
+  <Grid RowDefinitions="Auto,*,Auto" Margin="16">
+
+    <TextBlock Grid.Row="0" Text="{Binding WindowTitle}"
+               FontSize="20" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+    <ScrollViewer Grid.Row="1">
+      <StackPanel Spacing="12">
+        <StackPanel>
+          <TextBlock Text="Название" Margin="0,0,0,4"/>
+          <TextBox Text="{Binding Title}" PlaceholderText="Введите название книги"/>
+        </StackPanel>
+
+        <StackPanel>
+          <TextBlock Text="Автор" Margin="0,0,0,4"/>
+          <ComboBox ItemsSource="{Binding Authors}"
+                    SelectedItem="{Binding SelectedAuthor}"
+                    HorizontalAlignment="Stretch">
+            <ComboBox.ItemTemplate>
+              <DataTemplate>
+                <TextBlock Text="{Binding FullName}"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+
+        <StackPanel>
+          <TextBlock Text="Жанр" Margin="0,0,0,4"/>
+          <ComboBox ItemsSource="{Binding Genres}"
+                    SelectedItem="{Binding SelectedGenre}"
+                    HorizontalAlignment="Stretch">
+            <ComboBox.ItemTemplate>
+              <DataTemplate>
+                <TextBlock Text="{Binding Name}"/>
+              </DataTemplate>
+            </ComboBox.ItemTemplate>
+          </ComboBox>
+        </StackPanel>
+
+        <StackPanel>
+          <TextBlock Text="Год издания" Margin="0,0,0,4"/>
+          <NumericUpDown Value="{Binding Year}" Minimum="1800" Maximum="2100"/>
+        </StackPanel>
+
+        <StackPanel>
+          <TextBlock Text="Количество экземпляров" Margin="0,0,0,4"/>
+          <NumericUpDown Value="{Binding Quantity}" Minimum="1" Maximum="9999"/>
+        </StackPanel>
+
+        <StackPanel>
+          <TextBlock Text="ISBN" Margin="0,0,0,4"/>
+          <TextBox Text="{Binding ISBN}" PlaceholderText="укажите номер книги"/>
+        </StackPanel>
+
+        <TextBlock Text="{Binding ErrorMessage}"
+                   Foreground="Red"
+                   IsVisible="{Binding ErrorMessage, Converter={x:Static ObjectConverters.IsNotNull}}"
+                   TextWrapping="Wrap"/>
+      </StackPanel>
+    </ScrollViewer>
+
+    <StackPanel Grid.Row="2" Orientation="Horizontal"
+                HorizontalAlignment="Right"
+                Spacing="8" Margin="0,16,0,0">
+      <Button Command="{Binding SaveCommand}"   Content="Сохранить" IsDefault="True"/>
+      <Button Command="{Binding CancelCommand}" Content="Отмена"    IsCancel="True"/>
+    </StackPanel>
+
+  </Grid>
+</Window>

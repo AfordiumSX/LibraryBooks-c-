@@ -1,0 +1,20 @@
+# Build artefacts
+bin/
+obj/
+
+# IDE
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+*.userprefs
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Local secrets / dev configs
+appsettings.Development.json
+appsettings.*.local.json
+*.env
