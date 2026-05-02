@@ -52,7 +52,7 @@ BooksLibrary/
 Host=АДРЕС;Port=5432;Database=НАЗВАНИЕ_БАЗЫ_ДАННЫХ;Username=ИМЯ_ПОЛЬЗОВАТЕЛЯ;Password=ПАРОЛЬ
 ```
 
-### 3. Создайте базу данных и применить миграицю
+### 3. Создайте базу данных и примените миграицю
 ```bash
 cd BooksLibrary
 dotnet ef database update
