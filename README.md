@@ -3,7 +3,8 @@ Stack: C#, .net 10, Avalonia, ReactiveUI, Entity Framework, PostgreSQL
 
 ## Описание
 Учет книг для библиотеки с возможностью добавлять книги, авторов, читателей, жанры и выдачи
-<img width="1343" height="814" alt="1" src="https://github.com/user-attachments/assets/3e9a737c-98ef-4fb3-8b12-6db54ed962bc" />
+<img width="1447" height="772" alt="2" src="https://github.com/user-attachments/assets/5b288599-0fc2-483c-8e67-30d95bee6312" />
+
 
 ## Структура проекта
 
