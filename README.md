@@ -34,6 +34,9 @@ BooksLibrary/
 - **Логика форм** — `ViewModels/`
 - **Разметка форм** — `Views/`
 
+Таблицы базы данных:
+<img width="867" height="716" alt="3" src="https://github.com/user-attachments/assets/c7887b9b-008f-42f8-9b00-77dac20a69d2" />
+
 ## Запуск приложения
 ### 1. Установите зависимости
 - [.NET SDK 10](https://dotnet.microsoft.com/download)
